@@ -12,7 +12,7 @@ class Consultation extends Model
     use SoftDeletes;
 
     // Declare Table   
-    public $table = 'constultation';
+    public $table = 'consultation';
 
     //This field must be set type date yyyy-mm-dd hh:mm:ss
     protected $dates = [
@@ -23,12 +23,7 @@ class Consultation extends Model
 
     // Declare fillable fields
     protected $fillable = [
-        'user_id',
-        'type_user_id',
-        'contact',
-        'address',
-        'photo',
-        'gender',
+        'name',
         'created_at',
         'updated_at',
         'deleted_at'

@@ -33,7 +33,7 @@ class Role extends Model
     public function role_user(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasMany('App\Models\ManagementAccess\Role.php','role_id');
+        return $this->hasMany('App\Models\ManagementAccess\RoleUser.php','role_id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
