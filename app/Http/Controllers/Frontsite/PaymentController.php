@@ -34,7 +34,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        return view('view.pages.frontsite.payment');
+        return view('pages.frontsite.payment.index');
     }
 
     /**

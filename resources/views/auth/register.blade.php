@@ -1,7 +1,12 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <a href="/"
+            class="flex-shrink-0 inline-flex items-center">
+            <img class="h-12 lg:h-16"
+              src="{{ asset('assets/frontsite/image/logo.png') }}"
+              alt="Meet Doctor Logo"/>
+          </a>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
