@@ -17,9 +17,8 @@
   </head>
   <body>
 
-    {{-- @include('components.auth.header') --}}
         @yield('content')
-    {{-- @include('components.auth.footer') --}}
+    {{-- @include('components.frontsite.footer') --}}
 
     @stack('before-script')
         @include('includes.auth.script')
