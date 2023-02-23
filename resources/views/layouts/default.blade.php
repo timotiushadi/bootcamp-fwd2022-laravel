@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    
-    @include('includes.frontsite.meta')
+    <head>
 
-    <title>
+        @include('includes.frontsite.meta')
 
-        @yield('title') | MeetDoctor 
-        {{-- Dynamic Title --}}
-    </title>
+        <title>@yield('title') | MeetDoctor</title>
 
-    @stack('before-style')
-        @include('includes.frontsite.style')
-    @stack('after-style')
+        @stack('before-style')
+            @include('includes.frontsite.style')
+        @stack('after-style')
 
-  </head>
-  <body>
+    </head>
+    <body>
 
-    @include('components.frontsite.header')
-        @yield('content')
-    @include('components.frontsite.footer')
+        {{-- @include('sweetalert::alert') --}}
 
-    @stack('before-script')
-        @include('includes.frontsite.script')
-    @stack('after-script')
+        @include('components.frontsite.header')
+            @yield('content')
 
-    {{-- Modals untuk dipanggil di patch manapun --}}
+        @include('components.frontsite.footer')
 
-  </body>
+        @stack('before-script')
+            @include('includes.frontsite.script')
+        @stack('after-script')
+
+        {{-- modals --}}
+        {{-- if you have a modal, create here --}}
+
+    </body>
 </html>
