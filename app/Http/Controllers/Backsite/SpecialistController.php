@@ -5,28 +5,34 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-// Use Library Here
-use Symfony\Component\HttpFoundation\Response;
+Use Illuminate\Support\Facades\Storage;
+Use Symfony\Component\HttpFoundation\Response;
 
-// Use Everything Here
-Use Gate;
+// Request
+Use App\Http\Requests\Specialist\StoreSpecialistRequest;
+Use App\Http\Requests\Specialist\UpdateSpecialistRequest;
+
 Use Auth;
+Use App\Models\MasterData\Specialist;
 
-class DashboardController extends Controller
+class SpecialistController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return view('pages.backsite.dashboard.index');
+        $specialist = Specialist::orderBy('created_at', 'desc')->get();
+
+        // dd($specialist);
+
+        return view('pages.backsite.master-data.specialist.index', compact('specialist'));
     }
 
     /**
@@ -36,7 +42,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return abort('404');
     }
 
     /**
@@ -45,9 +51,16 @@ class DashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StoreSpecialistRequest $request)
+    {  
+        // Get all requests from frontsite
+        $data = $request->all();
+        
+        // Store to database
+        $specialist = Specialist::create($data);
+        
+        alert()->success('Success', 'Your specialist has been created');
+        return redirect()->route('pages.backsite.master-data.specialist.index');
     }
 
     /**
@@ -56,9 +69,9 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Specialist $specialist)
     {
-        //
+        return view('pages.backsite.master-data.specialist.show', compact('specialist'));
     }
 
     /**
@@ -69,7 +82,7 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort('404');
     }
 
     /**
@@ -81,7 +94,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort('404');
     }
 
     /**
@@ -92,6 +105,6 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort('404');
     }
 }

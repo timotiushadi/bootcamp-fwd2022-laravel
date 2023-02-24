@@ -1,32 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Backsite;
+namespace App\Http\Controllers\Frontsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-// Use Library Here
+// use library here
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
 
-// Use Everything Here
-Use Gate;
-Use Auth;
+// use everything here
+// use Gate;
+use Auth;
 
-class DashboardController extends Controller
+// use model here
+use App\Models\User;
+
+class RegisterController extends Controller
 {
+    public function __construct()
+     {
+         $this->middleware('auth');
+     }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return view('pages.backsite.dashboard.index');
+        return view('pages.frontsite.success.signup-success');
     }
 
     /**
@@ -36,7 +41,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -47,7 +52,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -58,7 +63,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -69,7 +74,7 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -81,7 +86,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -92,6 +97,6 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort(404);
     }
 }

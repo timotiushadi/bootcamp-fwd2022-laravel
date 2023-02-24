@@ -16,15 +16,15 @@
 
   </head>
   <body>
-
+        @include('sweetalert::alert')
         @yield('content')
-    {{-- @include('components.frontsite.footer') --}}
+        {{-- @include('components.frontsite.footer') --}}
 
-    @stack('before-script')
-        @include('includes.auth.script')
-    @stack('after-script')
+        @stack('before-script')
+            @include('includes.auth.script')
+        @stack('after-script')
 
-    {{-- Modals untuk dipanggil di patch manapun --}}
+        {{-- Modals untuk dipanggil di patch manapun --}}
 
   </body>
 </html>

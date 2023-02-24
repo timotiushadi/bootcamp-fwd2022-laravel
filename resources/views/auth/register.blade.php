@@ -46,6 +46,10 @@
                   value="{{ old('name') }}"
                   required autofocus
                 />
+
+                @if ($errors->has('name'))
+                    <p class="text-red-500 mb-3 text-sm">{{ $errors->first('name') }}</p>
+                @endif
               </label>
 
               <label class="block">
@@ -75,9 +79,7 @@
                   autofocus
                   value="{{ old('password') }}"
                 />
-                @if ($errors->has('password'))
-                    <p class="text-red-500 mb-3 text-sm">{{ $errors->first('password') }}</p>
-                @endif
+                
               </label>
 
               <label class="block">
@@ -91,6 +93,9 @@
                   required
                   autofocus
                 />
+                @if ($errors->has('password'))
+                    <p class="text-red-500 mb-3 text-sm">{{ $errors->first('password') }}</p>
+                @endif
               </label>
               
               <div class="mt-10 grid gap-6">

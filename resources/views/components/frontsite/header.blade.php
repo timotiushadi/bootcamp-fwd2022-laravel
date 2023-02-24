@@ -46,6 +46,7 @@
 
         </div>
 
+        @guest
         <!-- Button (no authenticated) -->
         <div class="hidden lg:ml-10 lg:flex lg:items-center">
           <a
@@ -110,6 +111,7 @@
             </svg>
           </button>
         </div>
+        @endguest
 
         @auth
           <!-- Button (Authenticated) -->
@@ -163,12 +165,13 @@
                   >Your Profile</a
                 >
                 <a
-                  href="#"
+                  href="{{ route('backsite.dashboard.index') }}"
                   class="block px-4 py-2 text-sm text-[#1E2B4F] hover:bg-gray-100"
                   role="menuitem"
                   tabindex="-1"
                   id="user-menu-item-1"
-                  >Settings</a
+                  
+                  >Dashboard</a
                 >
                 <a
                   href="{{ route('logout') }}"

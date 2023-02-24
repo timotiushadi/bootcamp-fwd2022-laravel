@@ -5,28 +5,29 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-// Use Library Here
-use Symfony\Component\HttpFoundation\Response;
+Use Illuminate\Support\Facades\Storage;
+Use Symfony\Component\HttpFoundation\Response;
 
-// Use Everything Here
-Use Gate;
 Use Auth;
+Use App\Models\MasterData\TypeUser;
 
-class DashboardController extends Controller
+class TypeUserController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return view('pages.backsite.dashboard.index');
+
+        $type_user = TypeUser::all();
+
+        return view('pages.backsite.management-access.type-user.index', compact('type_user'));
     }
 
     /**
@@ -36,7 +37,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return abort('404');
     }
 
     /**
@@ -47,7 +48,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort('404');
     }
 
     /**
@@ -58,7 +59,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        return abort('404');
     }
 
     /**
@@ -69,7 +70,7 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort('404');
     }
 
     /**
@@ -81,7 +82,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort('404');
     }
 
     /**
@@ -92,6 +93,6 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort('404');
     }
 }
