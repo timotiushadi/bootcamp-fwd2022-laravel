@@ -42,7 +42,7 @@ class SpecialistController extends Controller
      */
     public function create()
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -71,6 +71,8 @@ class SpecialistController extends Controller
      */
     public function show(Specialist $specialist)
     {
+        // dd($specialist);
+
         return view('pages.backsite.master-data.specialist.show', compact('specialist'));
     }
 
@@ -80,9 +82,11 @@ class SpecialistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Specialist $specialist)
     {
-        return abort('404');
+        // dd($specialist);
+        
+        return view('pages.backsite.master-data.specialist.edit', compact('specialist'));
     }
 
     /**
@@ -92,9 +96,17 @@ class SpecialistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSpecialistRequest $request, Specialist $specialist)
     {
-        return abort('404');
+        // Get all requests from frontsite
+        $data = $request->all();
+        
+        // Store to database
+        $specialist->update($data);
+        
+        alert()->success('Success', 'Your specialist has been updated');
+        return redirect()->route('pages.backsite.master-data.specialist.index');
+
     }
 
     /**
@@ -103,8 +115,11 @@ class SpecialistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Specialist $specialist)
     {
-        return abort('404');
+        $specialist->delete();
+
+        alert()->success('Success', 'Your specialist has been deleted');
+        return back();
     }
 }

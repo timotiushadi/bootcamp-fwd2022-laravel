@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Storage;
 Use Symfony\Component\HttpFoundation\Response;
 
+// Request 
+Use App\Http\Requests\ConfigPayment\UpdateSpecialistRequest;
+
+// Use Library
 Use Auth;
+
+// Models
 Use App\Models\MasterData\ConfigPayment;
 
 class ConfigPaymentController extends Controller
@@ -24,7 +30,9 @@ class ConfigPaymentController extends Controller
      */
     public function index()
     {
-        return abort('404');
+        $config_payment = ConfigPayment::all();
+
+        return view('pages.backsite.master-data.config-payment.index', compact('$config_payment'));
     }
 
     /**
@@ -34,7 +42,7 @@ class ConfigPaymentController extends Controller
      */
     public function create()
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -45,7 +53,7 @@ class ConfigPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -54,9 +62,11 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(/* ConfigPayment $config_payment */ $id)
     {
-        return abort('404');
+        // return view('pages.backsite.master-data.config-payment.show', compact('$config_payment'));
+
+        return abort(404);
     }
 
     /**
@@ -65,9 +75,9 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ConfigPayment $config_payment)
     {
-        return abort('404');
+        return view('pages.backsite.master-data.config-payment.edit', compact('$config_payment'));
     }
 
     /**
@@ -77,9 +87,21 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateConfigPaymentRequest $request, ConfigPayment $config_payment)
     {
-        return abort('404');
+        // Get all request
+        $data = $request->all();
+
+        // Reformat data before send to database
+        $data['fee'] = str_replace(',', '', $data['fee']);
+        $data['fee'] = str_replace('IDR ', '', $data['fee']);
+        $data['vat'] = str_replace(',', '', $data['vat']);
+
+        // Send data to database
+        $config_payment->update($data);
+
+        alert()->success('Success', 'The config payment has been updated!');
+        return redirect()->route('backsite.config-payment.index');
     }
 
     /**
@@ -88,8 +110,13 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(/* ConfigPayment $config_payment */ $id)
     {
-        return abort('404');
+        // $config_payment->delete();
+
+        // alert()->success('Success', 'The config payment has been deleted!');
+        // return back();
+
+        return abort(404);
     }
 }

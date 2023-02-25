@@ -5,8 +5,30 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+Use Illuminate\Support\Facades\Storage;
+Use Symfony\Component\HttpFoundation\Response;
+
+// // Request
+// Use App\Http\Requests\Doctor\StoreDoctorRequest;
+// Use App\Http\Requests\Doctor\UpdateDoctorRequest;
+
+Use Auth;
+
+Use App\Models\ManagementAccess\Permission;
+Use App\Models\ManagementAccess\PermissionRole;
+Use App\Models\ManagementAccess\Role;
+Use App\Models\ManagementAccess\RoleUser;
+
+// Use App\Models\MasterData\Specialist;
+
 class PermissionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +36,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return abort('404');
+        $permission = Permission::orderBy('id', 'asc')->all();
+
+        return view('pages.backsite.management-access.permission.index', compact('permission'));
     }
 
     /**
@@ -24,7 +48,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -35,7 +59,7 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -46,7 +70,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -57,7 +81,7 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -69,7 +93,7 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -80,6 +104,6 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        return abort('404');
+        return abort(404);
     }
 }

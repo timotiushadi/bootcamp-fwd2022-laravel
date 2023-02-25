@@ -5,8 +5,23 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+Use Illuminate\Support\Facades\Storage;
+Use Symfony\Component\HttpFoundation\Response;
+
+// Request
+Use App\Http\Requests\Doctor\StoreDoctorRequest;
+Use App\Http\Requests\Doctor\UpdateDoctorRequest;
+
+Use Auth;
+Use App\Models\Operational\Doctor;
+Use App\Models\MasterData\Specialist;
+
 class DoctorController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +29,11 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return abort('404');
+        $doctor = Doctor::orderBy('created_at', 'desc')->get();
+
+        $specialist = Specialist::orderBy('name', 'asc')->get();
+
+        return view('pages.backsite.operational.doctor.index', compact('doctor', 'specialist'));
     }
 
     /**
@@ -24,7 +43,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return abort('404');
+        return abort(404);
     }
 
     /**
@@ -33,9 +52,14 @@ class DoctorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDoctorRequest $request)
     {
-        return abort('404');
+        $data = $request->all();
+
+        $doctor = Doctor::create($data);
+
+        alert()->success('Success', 'Your Doctor has been created');
+        return redirect()->route('backsite.doctor.index');
     }
 
     /**
@@ -44,9 +68,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Doctor $doctor)
     {
-        return abort('404');
+        return view('pages.backsite.operational.doctor.show', compact('doctor'));
     }
 
     /**
@@ -55,9 +79,11 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Doctor $doctor)
     {
-        return abort('404');
+        $specialist = Specialist::orderBy('name', 'asc')->get();
+
+        return view('pages.backsite.operational.doctor.edit', compact('doctor', 'specialist'));
     }
 
     /**
@@ -67,9 +93,14 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDoctorRequest $request, Doctor $doctor)
     {
-        return abort('404');
+        $data = $request->all();
+
+        $doctor->update($data);
+
+        alert()->success('Success', 'Your Doctor has been updated');
+        return redirect()->route('backsite.doctor.index');
     }
 
     /**
@@ -78,8 +109,11 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Doctor $doctor)
     {
-        return abort('404');
+        $doctor->forceDelete();
+
+        alert()->success('Success', 'Your Doctor has been deleted');
+        return back();
     }
 }
