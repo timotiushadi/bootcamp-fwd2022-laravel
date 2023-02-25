@@ -93,9 +93,9 @@ class ConfigPaymentController extends Controller
         $data = $request->all();
 
         // Reformat data before send to database
-        $data['fee'] = str_replace(',', '', $data['fee']);
-        $data['fee'] = str_replace('IDR ', '', $data['fee']);
-        $data['vat'] = str_replace(',', '', $data['vat']);
+        // $data['fee'] = str_replace(',', '', $data['fee']);
+        // $data['fee'] = str_replace('IDR ', '', $data['fee']);
+        // $data['vat'] = str_replace(',', '', $data['vat']);
 
         // Send data to database
         $config_payment->update($data);

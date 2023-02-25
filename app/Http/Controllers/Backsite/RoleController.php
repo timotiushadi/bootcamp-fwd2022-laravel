@@ -85,8 +85,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-
         $permission = Permission::all();
+     
         $role->load('permission');
 
         return view('pages.backsite.management-access.role.edit', compact('permission','role'));
