@@ -12,8 +12,11 @@ Use Symfony\Component\HttpFoundation\Response;
 // Use App\Http\Requests\Doctor\StoreDoctorRequest;
 // Use App\Http\Requests\Doctor\UpdateDoctorRequest;
 
+// Use everything here
+Use Gate;
 Use Auth;
 
+// Models
 Use App\Models\ManagementAccess\Permission;
 Use App\Models\ManagementAccess\PermissionRole;
 Use App\Models\ManagementAccess\Role;

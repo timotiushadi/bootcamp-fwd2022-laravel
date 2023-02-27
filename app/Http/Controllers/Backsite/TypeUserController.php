@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Storage;
 Use Symfony\Component\HttpFoundation\Response;
 
+// Use everything here
+Use Gate;
 Use Auth;
+
+// Models
 Use App\Models\MasterData\TypeUser;
 
 class TypeUserController extends Controller

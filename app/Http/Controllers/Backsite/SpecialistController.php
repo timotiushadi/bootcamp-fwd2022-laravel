@@ -12,7 +12,11 @@ Use Symfony\Component\HttpFoundation\Response;
 Use App\Http\Requests\Specialist\StoreSpecialistRequest;
 Use App\Http\Requests\Specialist\UpdateSpecialistRequest;
 
+// Use everything here
+Use Gate;
 Use Auth;
+
+// Models
 Use App\Models\MasterData\Specialist;
 
 class SpecialistController extends Controller

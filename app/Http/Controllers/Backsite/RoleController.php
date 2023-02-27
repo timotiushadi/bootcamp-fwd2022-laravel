@@ -12,6 +12,8 @@ Use Symfony\Component\HttpFoundation\Response;
 Use App\Http\Requests\Role\StoreRoleRequest;
 Use App\Http\Requests\Role\UpdateRoleRequest;
 
+// Use everything here
+Use Gate;
 Use Auth;
 
 Use App\Models\ManagementAccess\Permission;

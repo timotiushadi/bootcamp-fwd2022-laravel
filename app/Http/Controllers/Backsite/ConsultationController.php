@@ -11,7 +11,11 @@ Use Symfony\Component\HttpFoundation\Response;
 Use App\Http\Requests\Consultation\StoreConsultationRequest;
 Use App\Http\Requests\Consultation\UpdateConsultationRequest;
 
+// Use everything here
+Use Gate;
 Use Auth;
+
+// Models
 Use App\Models\MasterData\Consultation;
 
 class ConsultationController extends Controller

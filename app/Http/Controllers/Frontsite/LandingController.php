@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Frontsite;
+use App\Http\Controllers\Controller;
 
 // Library 
-use App\Http\Controllers\Controller;
 use Illmuinate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
+
 
 // Model here
 use App\Models\User;

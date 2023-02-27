@@ -11,7 +11,8 @@ Use Symfony\Component\HttpFoundation\Response;
 // Request 
 Use App\Http\Requests\ConfigPayment\UpdateSpecialistRequest;
 
-// Use Library
+// Use everything here
+Use Gate;
 Use Auth;
 
 // Models
