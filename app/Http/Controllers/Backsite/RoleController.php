@@ -35,7 +35,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $role = Role::orderBy('created_at','desc')->all();
+        abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $role = Role::orderBy('created_at','desc')->get();
 
         return view('pages.backsite.management-access.role.index', compact('role'));
     }
@@ -74,7 +76,9 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        $role->load('permissions');
+        abort_if(Gate::denies('role_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $role->load('permission');
 
         return view('pages.backsite.management-access.role.show', compact('role'));
     }
@@ -87,6 +91,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $permission = Permission::all();
      
         $role->load('permission');
@@ -119,6 +125,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        abort_if(Gate::denies('role_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $role->forceDelete();
         
         alert()->success('Success', 'Your Role has been deleted');

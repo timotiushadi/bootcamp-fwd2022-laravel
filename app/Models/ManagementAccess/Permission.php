@@ -29,10 +29,15 @@ class Permission extends Model
         'deleted_at'
     ];
 
+    public function role(){
+        return $this->belongsToMany('App\Models\ManagementAccess\Role');
+    }
+
+
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function permission_role(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasMany('App\Models\ManagementAccess\PermissionRole.php','permission_id');
+        return $this->hasMany('App\Models\ManagementAccess\PermissionRole','permission_id');
     }
 }

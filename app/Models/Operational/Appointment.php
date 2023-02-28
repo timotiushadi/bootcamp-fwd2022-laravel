@@ -36,30 +36,30 @@ class Appointment extends Model
     ];
 
     // Set Relationship One to Many to detail_user table on type_user_id field
-    public function consultation(){
-
-        // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\MasterData\Consultation.php','consultation_id','id');
-    }
-
-    // Set Relationship One to Many to detail_user table on type_user_id field
     public function doctor(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\Operational\Doctor.php','doctor_id','id');
+        return $this->belongsTo('App\Models\Operational\Doctor','doctor_id','id');
+    }
+
+    // Set Relationship One to Many to detail_user table on type_user_id field
+    public function consultation(){
+
+        // Set Path and Table field on parameter (Path, field, field primary key)
+        return $this->belongsTo('App\Models\MasterData\Consultation','consultation_id','id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function user(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\User.php','user_id','id');
+        return $this->belongsTo('App\Models\User','user_id','id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function transaction(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasOne('App\Models\Operational\Transaction.php','appointment_id');
+        return $this->hasOne('App\Models\Operational\Transaction','appointment_id');
     }
 }

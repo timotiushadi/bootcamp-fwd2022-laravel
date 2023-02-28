@@ -32,6 +32,6 @@ class Consultation extends Model
     public function appointment(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasMany('App\Models\Operational\Appointment.php','consultation_id');
+        return $this->hasMany('App\Models\Operational\Appointment','consultation_id');
     }
 }

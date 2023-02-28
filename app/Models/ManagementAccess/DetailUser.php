@@ -38,13 +38,13 @@ class DetailUser extends Model
     public function type_user(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\MasterData\TypeUser.php','type_user_id','id');
+        return $this->belongsTo('App\Models\MasterData\TypeUser','type_user_id','id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function user(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\User.php','user_id','id');
+        return $this->belongsTo('App\Models\User','user_id','id');
     }
 }

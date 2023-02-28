@@ -36,13 +36,13 @@ class Doctor extends Model
     public function specialist(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\MasterData\Specialist.php','specialist_id','id');
+        return $this->belongsTo('App\Models\MasterData\Specialist','specialist_id','id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function appointment(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasMany('App\Models\Operational\Appointment.php','doctor_id');
+        return $this->hasMany('App\Models\Operational\Appointment','doctor_id');
     }
 }

@@ -33,6 +33,6 @@ class TypeUser extends Model
     public function detail_user(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasMany('App\Models\ManagementAccess\DetailUser.php','type_user_id');
+        return $this->hasMany('App\Models\ManagementAccess\DetailUser','type_user_id');
     }
 }

@@ -34,6 +34,6 @@ class Specialist extends Model
     public function doctor(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasMany('App\Models\Operational\Doctor.php','specialist_id');
+        return $this->hasMany('App\Models\Operational\Doctor','specialist_id');
     }
 }

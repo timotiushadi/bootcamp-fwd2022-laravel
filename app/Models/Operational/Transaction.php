@@ -39,6 +39,6 @@ class Transaction extends Model
     public function appointment(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\Operational\Appointment.php','appointment_id','id');
+        return $this->belongsTo('App\Models\Operational\Appointment','appointment_id','id');
     }
 }

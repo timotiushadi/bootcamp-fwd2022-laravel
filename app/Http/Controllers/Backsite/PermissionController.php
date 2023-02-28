@@ -3,14 +3,9 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 Use Illuminate\Support\Facades\Storage;
 Use Symfony\Component\HttpFoundation\Response;
-
-// // Request
-// Use App\Http\Requests\Doctor\StoreDoctorRequest;
-// Use App\Http\Requests\Doctor\UpdateDoctorRequest;
 
 // Use everything here
 Use Gate;
@@ -39,7 +34,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permission = Permission::orderBy('id', 'asc')->all();
+        abort_if(Gate::denies('permission_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $permission = Permission::orderBy('id', 'asc')->get();
 
         return view('pages.backsite.management-access.permission.index', compact('permission'));
     }

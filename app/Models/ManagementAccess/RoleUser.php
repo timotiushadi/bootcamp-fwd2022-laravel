@@ -34,13 +34,13 @@ class RoleUser extends Model
     public function user(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\User.php','user_id','id');
+        return $this->belongsTo('App\Models\User','user_id','id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function role(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\ManagementAccess\Role.php','role_id','id');
+        return $this->belongsTo('App\Models\ManagementAccess\Role','role_id','id');
     }
 }

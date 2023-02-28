@@ -69,24 +69,31 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    // Many to many from user and role 
+    public function role(){
+
+        return $this->belongsToMany('App\Models\ManagementAccess\Role');
+    }
+
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function appointment(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasMany('App\Models\Operational\Appointment.php','user_id');
+        return $this->hasMany('App\Models\Operational\Appointment','user_id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function detail_user(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasOne('App\Models\ManagementAccess\DetailUser.php','user_id');
+        return $this->hasOne('App\Models\ManagementAccess\DetailUser','user_id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function role_user(){
 
         // Set on parameter (Path, Table field)
-        return $this->hasMany('App\Models\ManagementAccess\RoleUser.php','user_id');
+        return $this->hasMany('App\Models\ManagementAccess\RoleUser','user_id');
     }
+
 }

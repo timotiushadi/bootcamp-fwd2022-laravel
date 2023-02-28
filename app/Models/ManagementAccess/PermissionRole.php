@@ -34,13 +34,13 @@ class PermissionRole extends Model
     public function role(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\ManagementAccess\Role.php','role_id','id');
+        return $this->belongsTo('App\Models\ManagementAccess\Role','role_id','id');
     }
 
     // Set Relationship One to Many to detail_user table on type_user_id field
     public function permission(){
 
         // Set Path and Table field on parameter (Path, field, field primary key)
-        return $this->belongsTo('App\Models\ManagementAccess\Permission.php','permission_id','id');
+        return $this->belongsTo('App\Models\ManagementAccess\Permission','permission_id','id');
     }
 }
